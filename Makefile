@@ -6,7 +6,7 @@
 #    By: klertrat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/27 10:23:24 by klertrat          #+#    #+#              #
-#    Updated: 2022/10/20 12:50:57 by klertrat         ###   ########.fr        #
+#    Updated: 2022/10/20 15:19:23 by klertrat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ SRCS =	ft_strrchr.c\
 	ft_memchr.c\
 	ft_strdup.c\
 	ft_strncmp.c\
-	ft_strnstr.c
+	ft_strnstr.c\
+	ft_strlcpy.c\
+	ft_strlcat.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

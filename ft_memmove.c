@@ -6,7 +6,7 @@
 /*   By: klertrat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 01:48:27 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/08 14:01:06 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:28:14 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*d;
-	unsigned char	*s;
+	char	*d;
+	const char	*s;
 
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	if (!d && !s)
+	if (!dst && !src)
 		return (NULL);
-	if (d < s)
+	d = dst;
+	s = src;
+	if (dst > src)
 	{
-		while (len > 0)
+		while (len)
 		{
-			*d++ = *s++;
+			d[len - 1] = s[len - 1];
 			len--;
 		}
 	}
 	else
-	{
-		while (len > 0)
-		{
-			*(d + (len - 1)) = *(s + (len - 1));
-			len--;
-		}
-	}
+		ft_memcpy(dst, src, len);
 	return (dst);
 }
 /*

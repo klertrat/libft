@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 16:48:12 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/20 20:30:28 by klertrat         ###   ########.fr       */
+/*   Created: 2022/10/20 14:03:41 by klertrat          #+#    #+#             */
+/*   Updated: 2022/10/20 14:28:27 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*d;
-	const char	*s;
+	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
-	d = dst;
-	s = src;
-	while (n > 0)
+	i = 0;
+	if (dstsize > 0)
 	{
-		*d++ = *s++;
-		n--;
+		while (i < dstsize - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	return (dst);
+	return (ft_strlen(src));
 }
-/*
-int	main()
-{
-	char str1[] = "yogurtt";
-	char str2[] = "Earn";
-	printf("str1 before memcpy ");
-	printf("%s", str1);
-	memcpy (str1, str2, sizeof(str2));
- 	printf("\nstr1 after memcpy ");
-	printf("%s", str1);
- 	return 0;
-}*/

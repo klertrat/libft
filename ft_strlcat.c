@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 16:48:12 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/20 20:30:28 by klertrat         ###   ########.fr       */
+/*   Created: 2022/10/20 14:58:51 by klertrat          #+#    #+#             */
+/*   Updated: 2022/10/20 16:20:06 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	char	*d;
-	const char	*s;
+	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
-	d = dst;
-	s = src;
-	while (n > 0)
-	{
-		*d++ = *s++;
-		n--;
-	}
-	return (dst);
+	i = ft_strlen(dst);
+	if (i >= dstsize || (dstsize == 0 && *dst == '\0'))
+		return (dstsize + ft_strlen(src));
+	while (*src != '\0' && i < dstsize - 1)
+		dst[i++] = *src++;
+	dst[i] = '\0';
+	return (i + ft_strlen(src));
 }
-/*
-int	main()
-{
-	char str1[] = "yogurtt";
-	char str2[] = "Earn";
-	printf("str1 before memcpy ");
-	printf("%s", str1);
-	memcpy (str1, str2, sizeof(str2));
- 	printf("\nstr1 after memcpy ");
-	printf("%s", str1);
- 	return 0;
-}*/
