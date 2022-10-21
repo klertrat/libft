@@ -6,7 +6,7 @@
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 10:59:45 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/20 19:46:29 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:55:11 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (check(s1[start], set) == 1 && s1[start] != '\0')
 		start++;
 	last = ft_strlen(s1);
-	while (check(s1[last - 1], set) == 1)
+	while (check(s1[last - 1], set) == 1 && last > start)
 		last--;
 	str1 = malloc(last - start + 1);
 	if (!str1)

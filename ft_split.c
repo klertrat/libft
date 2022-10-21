@@ -6,12 +6,11 @@
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:33:09 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/19 19:55:27 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:53:18 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<stdlib.h>
 
 int	count(const char *str, int c)
 {
@@ -24,13 +23,22 @@ int	count(const char *str, int c)
 			count++;
 		str++;
 	}
+	if (count == 0)
+		count += 1;
 	return (count);
+}
+
+int	findend(const char *str, int index, char c)
+{
+	while (str[index] != '\0' && str[index] != c)
+			index++;
+	return (index);
 }
 
 char	*find_word(const char *str, int index, int end)
 {
-	int    i;
-	char    *word;
+	int		i;
+	char	*word;
 
 	i = 0;
 	if (end == index)
@@ -39,7 +47,7 @@ char	*find_word(const char *str, int index, int end)
 	if (!word)
 		return (0);
 	while (index < end)
-		word[i++] = str[index++];  
+		word[i++] = str[index++];
 	word[i] = 0;
 	return (word);
 }
@@ -48,7 +56,7 @@ char	**ft_split(const char *s, char c)
 {
 	int		i;
 	int		j;
-	int		tempi;
+	int		end;
 	char	**ans;
 
 	i = 0;
@@ -62,12 +70,11 @@ char	**ft_split(const char *s, char c)
 	{
 		while (s[i] == c && s[i] != '\0')
 			i++;
-		if (i == 0 || (s[i] != '\0' && s[i] != c && s[i - 1] == c))
+		if (i == 0 || s[i] != '\0')
 		{
-			tempi = i;
-			while (s[i] != c && s[i] != '\0')
-				i++;
-			ans[j++] = find_word(s, tempi, i);
+			end = findend(s, i, c);
+			ans[j++] = find_word(s, i, end);
+			i = end;
 		}
 	}
 	ans[j] = 0;
@@ -77,20 +84,33 @@ char	**ft_split(const char *s, char c)
 int	main(int argc, char **argv)
 {
 	int		index;
-	char	*real;
-	char	**result;
-
+	char	**split;
+	(void)	argc;
+	split = ft_split(argv[1], ' ');
 	index = 0;
 	if (argc == 2)
 	{
-		result = ft_split(argv[1], 'i');
-		*real = split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'i');
-		while (result[index] && real[index])
+		while (split[index])
 		{
-			printf("%s\t", result[index]);
-			printf("%c\n", real[index]);
+			printf("%s\n", split[index]);
 			index++;
 		}
+	}
+	return (0);
+}
+*/
+/*
+int	main(void)
+{
+	int	index;
+	char	**res;
+
+	res = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+	index = 0;
+	while (res[index])
+	{
+		printf("%s\n", res[index]);
+		index++;
 	}
 	return (0);
 }*/

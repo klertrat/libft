@@ -6,7 +6,7 @@
 /*   By: klertrat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 01:48:27 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/20 20:28:14 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/20 21:00:54 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*d;
+	char		*d;
 	const char	*s;
 
 	if (!dst && !src)

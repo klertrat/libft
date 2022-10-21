@@ -6,7 +6,7 @@
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:48:12 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/20 20:30:28 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/20 21:01:26 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*d;
+	char		*d;
 	const char	*s;
 
 	if (!dst && !src)
