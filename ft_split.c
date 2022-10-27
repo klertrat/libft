@@ -6,41 +6,67 @@
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:33:09 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/22 01:53:18 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:28:15 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	count(const char *str, int c)
+static char	**ft_free(char **ans)
 {
-	int	count;
+	size_t	i;
+
+	i = 0;
+	while (ans[i])
+	{
+		free(ans[i]);
+		i++;
+	}
+	free(ans);
+	return (NULL);
+}
+
+static size_t	ft_count(const char *str, char c)
+{
+	size_t	count;
+	size_t	i;
+	size_t	sw;
 
 	count = 0;
-	while (*str != '\0')
+	sw = 0;
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*str == c && *(str + 1) != c && *(str + 1) != '\0')
+		if (str[i] != c && (str[i + 1] == c || str[i + 1] != '\0'))
 			count++;
+		if (str[i] == c)
+			sw = 1;
 		str++;
 	}
-	if (count == 0)
+	if (count == 0 && sw == 0)
 		count += 1;
 	return (count);
 }
 
-int	findend(const char *str, int index, char c)
+size_t	findend(const char *str, size_t index, char c)
 {
 	while (str[index] != '\0' && str[index] != c)
 			index++;
 	return (index);
 }
 
-char	*find_word(const char *str, int index, int end)
+char	*find_word(const char *str, size_t index, char c)
 {
-	int		i;
+	size_t	i;
+	size_t	tempindex;
+	size_t	end;
 	char	*word;
 
 	i = 0;
+	tempindex = index;
+	while (str[tempindex] != '\0' && str[tempindex] != c)
+			tempindex++;
+	end = tempindex;
 	if (end == index)
 		return (0);
 	word = malloc(end - index + 1);
@@ -54,63 +80,28 @@ char	*find_word(const char *str, int index, int end)
 
 char	**ft_split(const char *s, char c)
 {
-	int		i;
-	int		j;
-	int		end;
+	size_t	i;
+	size_t	j;
 	char	**ans;
 
 	i = 0;
 	j = 0;
 	if (!s)
 		return (0);
-	ans = malloc(sizeof(char *) * (count(s, c) + 1));
+	ans = ft_calloc(ft_count(s, c) + 1, sizeof(char *));
 	if (!ans)
 		return (0);
 	while (s[i] != '\0')
 	{
 		while (s[i] == c && s[i] != '\0')
 			i++;
-		if (i == 0 || s[i] != '\0')
+		if (s[i] != '\0')
 		{
-			end = findend(s, i, c);
-			ans[j++] = find_word(s, i, end);
-			i = end;
+			ans[j++] = find_word(s, i, c);
+			if (!ans[j - 1])
+				return (ft_free(ans));
+			i = findend(s, i, c);
 		}
 	}
-	ans[j] = 0;
 	return (ans);
 }
-/*
-int	main(int argc, char **argv)
-{
-	int		index;
-	char	**split;
-	(void)	argc;
-	split = ft_split(argv[1], ' ');
-	index = 0;
-	if (argc == 2)
-	{
-		while (split[index])
-		{
-			printf("%s\n", split[index]);
-			index++;
-		}
-	}
-	return (0);
-}
-*/
-/*
-int	main(void)
-{
-	int	index;
-	char	**res;
-
-	res = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-	index = 0;
-	while (res[index])
-	{
-		printf("%s\n", res[index]);
-		index++;
-	}
-	return (0);
-}*/

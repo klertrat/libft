@@ -6,7 +6,7 @@
 #    By: klertrat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/27 10:23:24 by klertrat          #+#    #+#              #
-#    Updated: 2022/10/20 15:19:23 by klertrat         ###   ########.fr        #
+#    Updated: 2022/10/22 20:06:53 by klertrat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,23 @@ SRCS =	ft_strrchr.c\
 	ft_strncmp.c\
 	ft_strnstr.c\
 	ft_strlcpy.c\
-	ft_strlcat.c
+	ft_strlcat.c\
+	ft_strmapi.c\
+	ft_striteri.c
+
+BONUS = ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstclear.c \
+	ft_lstdelone.c \
+       	ft_lstiter.c \
+       	ft_lstlast.c \
+	ft_lstmap.c \
+       	ft_lstnew.c \
+       	ft_lstsize.c
+
 OBJS = $(SRCS:.c=.o)
+
+BONUS_OBJS = $(BONUS:.c=.o)
 
 all: $(NAME)
 
@@ -55,11 +70,14 @@ $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_OBJS)
 
 re: fclean all
 
-.PHONY: clean fclean all re
+bonus: $(NAME) $(BONUS_OBJS)
+	ar rcs $(NAME) $(BONUS_OBJS)
+
+.PHONY: clean fclean all re bonus

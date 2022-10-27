@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 19:52:47 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/22 14:25:54 by klertrat         ###   ########.fr       */
+/*   Created: 2022/10/22 19:02:47 by klertrat          #+#    #+#             */
+/*   Updated: 2022/10/22 20:04:52 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+#include"libft.h"
+/*
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int		i;
-	char	*res;
+	t_list	*last;
 
-	i = 0;
-	if (!s)
-		return (0);
-	res = malloc(ft_strlen(s) + 1);
-	if (!res)
-		return (0);
-	while (s[i])
+	if (!*lst)
 	{
-		res[i] = (*f)(i, s[i]);
-		i++;
+		*lst = new;
+		return ;
 	}
-	res[i] = '\0';
-	return (res);
+	last = ft_lstlast(*lst);
+	last -> next = new;
+}*/
+
+void    ft_lstadd_back(t_list **lst, t_list *new)
+{
+        t_list  *last;
+
+        if (*lst)
+        {
+                last = ft_lstlast(*lst);
+                last -> next = new;
+        }
+        else
+                *lst = new;
 }

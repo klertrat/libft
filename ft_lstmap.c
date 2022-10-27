@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 19:52:47 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/22 14:25:54 by klertrat         ###   ########.fr       */
+/*   Created: 2022/10/22 17:02:18 by klertrat          #+#    #+#             */
+/*   Updated: 2022/10/22 20:39:46 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		i;
-	char	*res;
+	t_list	*new;
+	t_list	*newlist;
 
-	i = 0;
-	if (!s)
+	newlist = NULL;
+	if (!lst)
 		return (0);
-	res = malloc(ft_strlen(s) + 1);
-	if (!res)
-		return (0);
-	while (s[i])
+	while (lst)
 	{
-		res[i] = (*f)(i, s[i]);
-		i++;
+		new = ft_lstnew((*f)(lst -> content));
+		if (!new)
+		{
+			ft_lstdelone(newlist, del);
+			return (0);
+		}
+		ft_lstadd_back(&newlist, new);
+		lst = lst -> next;
 	}
-	res[i] = '\0';
-	return (res);
+	return (newlist);
 }
