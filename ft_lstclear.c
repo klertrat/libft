@@ -6,7 +6,7 @@
 /*   By: klertrat <klertrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:57:37 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/22 18:27:25 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:58:45 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		temp = (*lst) -> next;
-		(*del)((*lst) -> content);
+		temp = (*lst)-> next;
+		(*del)((*lst)-> content);
 		free(*lst);
 		*lst = temp;
 	}	

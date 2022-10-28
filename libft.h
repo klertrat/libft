@@ -6,23 +6,23 @@
 /*   By: klertrat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:31 by klertrat          #+#    #+#             */
-/*   Updated: 2022/10/22 19:08:26 by klertrat         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:49:06 by klertrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-#include<stdlib.h>
-#include<unistd.h>
-#include<string.h>
-#include<stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdio.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	void	*content;
+	void			*content;
 	struct s_list	*next;
-}	t_list;
+}				t_list;
 
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
